@@ -2,23 +2,23 @@
 
 **Tampilan Login**
 
-<img width="1419" height="944" alt="image" src="https://github.com/user-attachments/assets/2dd41b25-de1b-44e2-bed1-b6c137f82902" />
+<img width="1453" height="942" alt="1" src="https://github.com/user-attachments/assets/09f7e37a-149c-48a4-8360-8dc5876aa7ce" />
 
 **Tampilan Dashboard**
 
-<img width="1915" height="942" alt="image" src="https://github.com/user-attachments/assets/f584c5ae-28c3-460f-b2f6-85b9c9222090" />
+<img width="1907" height="943" alt="2" src="https://github.com/user-attachments/assets/41dc7b18-0484-452a-be19-83101dbd434d" />
 
 **Tampilan Produk**
 
-<img width="1447" height="946" alt="image" src="https://github.com/user-attachments/assets/3fc32240-036f-4910-9f1f-bf3143bcc1dc" />
+<img width="1496" height="946" alt="3" src="https://github.com/user-attachments/assets/e14282c6-6967-403d-b23c-c26e598f1b65" />
 
 **Tampilan Cart**
 
-<img width="1437" height="914" alt="image" src="https://github.com/user-attachments/assets/257c3674-9d13-4290-8ade-49829d1737c3" />
+<img width="1388" height="941" alt="8" src="https://github.com/user-attachments/assets/a162d621-78c4-4ea9-b046-ff677ac141a5" />
 
 **Tampilan Deskripsi Produk**
 
-<img width="1551" height="992" alt="image" src="https://github.com/user-attachments/assets/2fb6ae3a-e263-439f-a50c-d550a57f9ab3" />
+<img width="1510" height="945" alt="5" src="https://github.com/user-attachments/assets/758a106c-a4ca-4a6e-8bfc-f2888c0b4e37" />
 
 **Tampilan Delete Produk**
 
@@ -26,18 +26,32 @@
 
 **Tampilan About**
 
-<img width="1602" height="991" alt="image" src="https://github.com/user-attachments/assets/6c7bc26a-60fd-4220-87e5-5d06714714bc" />
-
-<img width="1405" height="861" alt="image" src="https://github.com/user-attachments/assets/ee0c176c-1383-4089-9b0e-c305fb824b6e" />
+<img width="1490" height="943" alt="10" src="https://github.com/user-attachments/assets/1c4a5c45-a8c8-4fb7-a2c9-21f4333f93a1" />
 
 **Tampilan Search**
 
-<img width="1395" height="731" alt="image" src="https://github.com/user-attachments/assets/986b89a2-fefe-43c6-b649-52960c672fc5" />
+<img width="1442" height="936" alt="9" src="https://github.com/user-attachments/assets/d424906c-4876-47d9-bb51-24830e31cb18" />
 
 **Tampilan Pagination**
 
-<img width="1457" height="940" alt="image" src="https://github.com/user-attachments/assets/258d670c-02a9-4805-aba5-c793a6ff049f" />
+<img width="1478" height="946" alt="4" src="https://github.com/user-attachments/assets/915a4507-1ec7-453c-8ea1-5ecfc1a10e3d" />
+
+**Tampilan Edit Produk**
+
+<img width="1394" height="945" alt="6" src="https://github.com/user-attachments/assets/6e066ab9-4364-4864-9647-eb325c3ba29c" />
+
+**Tampilan Tambah Produk**
+
+<img width="1443" height="942" alt="7" src="https://github.com/user-attachments/assets/8047a908-5246-41bf-8898-0e072a26ac53" />
+
+**Tampilan Dropdown Profile**
+
+<img width="202" height="297" alt="11" src="https://github.com/user-attachments/assets/493e46f7-4ed5-483f-a33a-aa85a49aed1b" />
+
+**Tampilan Manage User**
+
+<img width="1888" height="926" alt="12" src="https://github.com/user-attachments/assets/7ef83f49-0e53-42f7-bd9a-a0b4fa77b237" />
 
 **Tampilan Logout**
 
-<img width="1383" height="632" alt="image" src="https://github.com/user-attachments/assets/1584f315-9f75-4fbf-a3d4-10663d361ecc" />
+<img width="1388" height="619" alt="13" src="https://github.com/user-attachments/assets/493ed634-ee23-4e18-a1b2-0f954560ea7a" />
