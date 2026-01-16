@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Quicksand:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap');
 
 :root {
-    --primary: #D2B48C;
-    --primary-dark: #B99976;
-    --secondary: #987554;
-    --accent: #D2B48C;
-    --light: #D2B48C;
-    --dark: #4A4A4A;
+    --primary: #895737;
+    --primary-dark: #5E3023;
+    --secondary: #684F36;
+    --accent: #F1EADA;
+    --light: #F3E9DC;
+    --dark: #3D1F12;
     --success: #98FB98;
     --warning: #FFD700;
     --danger: #FF6B6B;
@@ -228,7 +228,7 @@ body {
 
 /* Dashboard Styles */
 .dashboard-container {
-    background: linear-gradient(135deg, #987554 50%, #D2B48C 50%);
+    background: linear-gradient(135deg, #987554 10%, #D2B48C 90%);
     min-height: 100vh;
 }
 
@@ -271,7 +271,7 @@ body {
 
 .badge-pending { background-color: #FFF3CD; color: #856404; }
 .badge-processing { background-color: #D1ECF1; color: #0C5460; }
-.badge-shipped { background-color: #CCE5FF; color: #004085; }
+.badge-shipped { background-color: #CCE5FF; color: #3D1F12; }
 .badge-delivered { background-color: #D4EDDA; color: #155724; }
 .badge-cancelled { background-color: #F8D7DA; color: #721C24; }
 

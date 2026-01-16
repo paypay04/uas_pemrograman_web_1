@@ -55,13 +55,20 @@ include __DIR__ . '/../../views/header.php';
 
 <div class="container py-5">
     <!-- Page Header -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <h1 class="h2 fw-bold text-dark mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h2 fw-bold text-dark">
                 <i class="fas fa-bread-slice me-2 text-primary"></i>Our Products
             </h1>
             <p class="text-muted">Discover our delicious selection of freshly baked goods</p>
         </div>
+        
+        <!-- Tombol Add Product (hanya untuk admin) -->
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+        <a href="<?php echo BASE_URL; ?>/product/tambah" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Add Product
+        </a>
+        <?php endif; ?>
     </div>
 
     <!-- Search & Filter -->
@@ -70,7 +77,7 @@ include __DIR__ . '/../../views/header.php';
             <form method="GET" action="" class="search-form">
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search cakes, bread, cookies..." 
-                           value="<?php echo htmlspecialchars($search); ?>">
+                            value="<?php echo htmlspecialchars($search); ?>">
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
@@ -153,8 +160,8 @@ include __DIR__ . '/../../views/header.php';
                     <!-- Description -->
                     <p class="card-text text-muted small flex-grow-1">
                         <?php echo strlen($prod['description']) > 80 ? 
-                              substr($prod['description'], 0, 80) . '...' : 
-                              $prod['description']; ?>
+                                substr($prod['description'], 0, 80) . '...' : 
+                                $prod['description']; ?>
                     </p>
                     
                     <!-- Price -->
@@ -390,11 +397,11 @@ include __DIR__ . '/../../views/header.php';
 }
 
 .page-link {
-    color: #B99976;
+    color: #895737;
 }
 
 .page-link:hover {
-    color: #987554;
+    color: #734128;
 }
 </style>
 

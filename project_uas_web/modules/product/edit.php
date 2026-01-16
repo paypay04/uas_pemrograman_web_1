@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Handle image upload
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/../../assets/gambar/products/';
+        $uploadDir = __DIR__ . '/assets/gambar/';
         $fileName = time() . '_' . basename($_FILES['image']['name']);
         $targetFile = $uploadDir . $fileName;
         
@@ -91,10 +91,11 @@ include __DIR__ . '/../../views/header.php';
                             <i class="fas fa-edit me-2 text-primary"></i>Edit Product
                         </h3>
                         <div>
-                            <a href="?page=products" class="btn btn-outline-primary btn-sm me-2">
+                            <a href="<?php echo BASE_URL; ?>/product_detail?id=<?php echo $productData['id']; ?>" 
+                            class="btn btn-outline-primary btn-sm me-2">
                                 <i class="fas fa-arrow-left me-2"></i>Back
                             </a>
-                            <a href="?page=product_delete&id=<?php echo $id; ?>" 
+                            <a href="?page=delete&id=<?php echo $id; ?>" 
                                class="btn btn-outline-danger btn-sm"
                                onclick="return confirm('Are you sure you want to delete this product?')">
                                 <i class="fas fa-trash me-2"></i>Delete
@@ -116,7 +117,7 @@ include __DIR__ . '/../../views/header.php';
                             <!-- Current Image -->
                             <div class="col-md-12 text-center mb-4">
                                 <?php if ($productData['image_url']): ?>
-                                <img src="../assets/gambar/products/<?php echo $productData['image_url']; ?>" 
+                                <img src="<?php echo BASE_URL; ?>/assets/gambar/<?php echo $productData['image_url']; ?>" 
                                      alt="<?php echo htmlspecialchars($productData['name']); ?>"
                                      class="img-thumbnail" style="max-height: 200px;">
                                 <?php else: ?>
@@ -210,7 +211,7 @@ include __DIR__ . '/../../views/header.php';
                                     <button type="submit" class="btn btn-primary flex-grow-1">
                                         <i class="fas fa-save me-2"></i>Update Product
                                     </button>
-                                    <a href="?page=products" class="btn btn-outline-secondary">
+                                    <a href="<?php echo BASE_URL; ?>/product" class="btn btn-outline-secondary">
                                         <i class="fas fa-times me-2"></i>Cancel
                                     </a>
                                 </div>

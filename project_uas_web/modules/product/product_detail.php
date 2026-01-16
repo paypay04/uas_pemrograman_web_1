@@ -72,7 +72,7 @@ include __DIR__ . '/../../views/header.php';
 <nav aria-label="breadcrumb" class="container mt-3">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>">Home</a></li>
-        <li class="breadcrumb-item"><a href="?page=products">Products</a></li>
+        <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>/product">Products</a></li>
         <li class="breadcrumb-item active"><?php echo htmlspecialchars($productData['name']); ?></li>
     </ol>
 </nav>
@@ -197,6 +197,14 @@ include __DIR__ . '/../../views/header.php';
                                     <i class="fas fa-shopping-cart me-2"></i>
                                     <?php echo $productData['stock'] == 0 ? 'Out of Stock' : 'Add to Cart'; ?>
                                 </button>
+
+                                <!-- Di product_detail.php, di bagian action buttons -->
+                                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                                <a href="<?php echo BASE_URL; ?>/product/edit?id=<?php echo $productData['id']; ?>" 
+                                   class="btn btn-primary btn-lg px-4">
+                                    <i class="fas fa-edit me-1"></i>Edit
+                                </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </form>

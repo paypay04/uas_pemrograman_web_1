@@ -31,8 +31,8 @@ try {
     // Total Users (Customers)
     $totalUsers = $user->countAll();
     
-    // Low Stock Products (tambahkan method ini ke Product.php jika belum ada)
-    $lowStockProducts = 0; // Sementara 0, nanti tambahkan method
+    // Low Stock Products
+    $lowStockProducts = $product->countLowStock(10); // Misal: stock < 10
     
     // Data untuk chart
     $salesData = $order->getDailySales(7); // 7 hari terakhir
@@ -40,16 +40,14 @@ try {
     // Category Sales
     $categorySales = $order->getCategorySales();
     
-    // Recent Orders (gunakan method getRecent bukan getRecentOrders)
+    // Recent Orders
     $recentOrders = $order->getRecent(5);
     
-    // Recent Products (gunakan method getRecent bukan getRecentProducts)
+    // Recent Products
     $recentProducts = $product->getRecent(5);
     
-    // Recent Users (gunakan method getRecent bukan getRecentUsers)
+    // Recent Users
     $recentUsers = $user->getRecent(5);
-    
-    // ========== AKHIR PERBAIKAN ==========
     
 } catch (Exception $e) {
     die("Error loading dashboard data: " . $e->getMessage());
@@ -169,51 +167,16 @@ if (file_exists($headerPath)) {
         </div>
     </div>
 
-    <!-- Charts Row -->
-    <div class="row g-4 mb-4">
-        <!-- Sales Chart -->
-        <div class="col-xl-8">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-header bg-white border-0 py-3">
-                    <h6 class="mb-0 text-dark">
-                        <i class="fas fa-chart-line me-2 text-primary"></i>Sales Overview
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="salesChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Category Sales Chart -->
-        <div class="col-xl-4">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-header bg-white border-0 py-3">
-                    <h6 class="mb-0 text-dark">
-                        <i class="fas fa-chart-pie me-2 text-primary"></i>Sales by Category
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="categoryChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Recent Data Row -->
     <div class="row g-4">
         <!-- Recent Orders -->
-        <div class="col-xl-6">
-            <div class="card border-0 shadow-sm">
+        <div class="col-xl-4 col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
                 <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
                     <h6 class="mb-0 text-dark">
                         <i class="fas fa-clock me-2 text-primary"></i>Recent Orders
                     </h6>
-                    <a href="../modules/admin/orders" class="btn btn-sm btn-outline-primary">View All</a>
+                    <a href="<?php echo BASE_URL; ?>/modules/admin/orders" class="btn btn-sm btn-outline-primary">View All</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
@@ -253,44 +216,107 @@ if (file_exists($headerPath)) {
             </div>
         </div>
 
-        <!-- Recent Products & Users -->
-        <div class="col-xl-6">
-            <div class="row g-4">
-                <!-- Recent Products -->
-                <div class="col-12">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0 text-dark">
-                                <i class="fas fa-box me-2 text-primary"></i>Recent Products
-                            </h6>
-                            <a href="<?php echo BASE_URL; ?>/modules/product" class="btn btn-sm btn-outline-primary">View All</a>
-                        </div>
-                        <div class="card-body">
-                            <div class="list-group list-group-flush">
-                                <?php foreach ($recentProducts as $product): ?>
-                                <div class="list-group-item border-0 px-0 py-2">
+        <!-- Recent Products -->
+        <div class="col-xl-4 col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 text-dark">
+                        <i class="fas fa-box me-2 text-primary"></i>Recent Products
+                    </h6>
+                    <a href="<?php echo BASE_URL; ?>/modules/product" class="btn btn-sm btn-outline-primary">View All</a>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <?php foreach ($recentProducts as $product): ?>
+                        <div class="list-group-item border-0 px-0 py-3">
+                            <div class="d-flex align-items-center">
+                                <img src="<?php echo BASE_URL; ?>/assets/gambar/<?php echo $product['image_url'] ?? 'default.jpg'; ?>" 
+                                     alt="<?php echo htmlspecialchars($product['name']); ?>" 
+                                     class="rounded me-3" width="60" height="60" style="object-fit: cover;">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-bold"><?php echo htmlspecialchars($product['name']); ?></h6>
                                     <div class="d-flex align-items-center">
-                                        <img src="<?php echo BASE_URL; ?>/assets/gambar/<?php echo $product['image_url'] ?? 'default.jpg'; ?>" 
-                                             alt="<?php echo htmlspecialchars($product['name']); ?>" 
-                                             class="rounded me-3" width="45" height="45">
-                                        <div class="flex-grow-1">
-                                            <h6 class="mb-1"><?php echo htmlspecialchars($product['name']); ?></h6>
-                                            <small class="text-muted">Added <?php echo timeAgo($product['created_at']); ?></small>
-                                        </div>
-                                        <div class="text-end">
-                                            <span class="fw-bold text-dark">Rp <?php echo number_format($product['price'], 0, ',', '.'); ?></span><br>
-                                            <small class="<?php echo $product['stock'] < 10 ? 'text-danger' : 'text-success'; ?>">
-                                                Stock: <?php echo $product['stock']; ?>
-                                            </small>
-                                        </div>
+                                        <span class="badge bg-<?php echo $product['stock'] < 10 ? 'danger' : 'success'; ?> me-2">
+                                            Stock: <?php echo $product['stock']; ?>
+                                        </span>
+                                        <small class="text-muted">Added <?php echo timeAgo($product['created_at']); ?></small>
                                     </div>
                                 </div>
-                                <?php endforeach; ?>
-                                <?php if (empty($recentProducts)): ?>
-                                <div class="text-center py-3 text-muted">No recent products</div>
-                                <?php endif; ?>
+                                <div class="text-end">
+                                    <span class="fw-bold text-dark fs-5">Rp <?php echo number_format($product['price'], 0, ',', '.'); ?></span>
+                                    <div class="mt-1">
+                                        <small class="text-muted">Category: <?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?></small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <?php endforeach; ?>
+                        <?php if (empty($recentProducts)): ?>
+                        <div class="text-center py-4 text-muted">No recent products</div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Users -->
+        <div class="col-xl-4 col-lg-12">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 text-dark">
+                        <i class="fas fa-users me-2 text-primary"></i>Recent Users
+                    </h6>
+                    <a href="<?php echo BASE_URL; ?>/modules/admin" class="btn btn-sm btn-outline-primary">Manage Users</a>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <?php foreach ($recentUsers as $user): ?>
+                        <div class="list-group-item border-0 px-0 py-3">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-placeholder rounded-circle bg-info text-white d-flex align-items-center justify-content-center me-3" 
+                                     style="width: 50px; height: 50px;">
+                                    <?php 
+                                    $initials = '';
+                                    if (!empty($user['full_name'])) {
+                                        $nameParts = explode(' ', $user['full_name']);
+                                        foreach ($nameParts as $part) {
+                                            $initials .= strtoupper(substr($part, 0, 1));
+                                            if (strlen($initials) >= 2) break;
+                                        }
+                                    } else {
+                                        $initials = strtoupper(substr($user['username'], 0, 2));
+                                    }
+                                    echo $initials;
+                                    ?>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-bold"><?php echo htmlspecialchars($user['full_name'] ?: $user['username']); ?></h6>
+                                    <div class="d-flex align-items-center flex-wrap">
+                                        <small class="text-muted me-3">
+                                            <i class="fas fa-envelope me-1"></i><?php echo htmlspecialchars($user['email']); ?>
+                                        </small>
+                                        <span class="badge bg-<?php echo $user['role'] === 'admin' ? 'danger' : 'primary'; ?>">
+                                            <?php echo ucfirst($user['role']); ?>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <small class="text-muted d-block">
+                                        Joined <?php echo date('d M Y', strtotime($user['created_at'])); ?>
+                                    </small>
+                                    <div class="mt-2">
+                                        <a href="<?php echo BASE_URL; ?>/modules/admin?action=edit&id=<?php echo $user['id']; ?>" 
+                                           class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                        <?php if (empty($recentUsers)): ?>
+                        <div class="text-center py-4 text-muted">No recent users</div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -300,16 +326,13 @@ if (file_exists($headerPath)) {
 
 <!-- JavaScript for Charts -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../assets/js/dashboard-charts.js"></script>
-
 <script>
-// Initialize charts with PHP data
 document.addEventListener('DOMContentLoaded', function() {
     // Sales Chart Data from PHP
     const salesData = {
         labels: <?php echo json_encode(array_keys($salesData)); ?>,
         datasets: [{
-            label: 'Orders',
+            label: 'Sales (Rp)',
             data: <?php echo json_encode(array_values($salesData)); ?>,
             borderColor: '#D2B48C',
             backgroundColor: 'rgba(255, 182, 193, 0.1)',
@@ -331,13 +354,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }]
     };
 
-    // Initialize charts
-    initCharts(salesData, categoryData);
+    // Initialize Sales Chart
+    const salesCtx = document.getElementById('salesChart').getContext('2d');
+    new Chart(salesCtx, {
+        type: 'line',
+        data: salesData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return 'Rp ' + value.toLocaleString('id-ID');
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Initialize Category Chart
+    const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+    new Chart(categoryCtx, {
+        type: 'doughnut',
+        data: categoryData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
 });
 
 function changeDateRange(days) {
     // AJAX request to update dashboard data
-    fetch(`../modules/admin/dashboard-data.php?days=${days}`)
+    fetch(`<?php echo BASE_URL; ?>/modules/admin/dashboard-data.php?days=${days}`)
         .then(response => response.json())
         .then(data => {
             // Update statistics
@@ -356,7 +418,57 @@ function updateStatistics(stats) {
     document.querySelector('[data-stat="products"]').textContent = stats.products;
     document.querySelector('[data-stat="users"]').textContent = stats.users;
 }
+
+function updateCharts(chartData) {
+    // Update chart data here
+}
+
+function updateRecentData(recentData) {
+    // Update recent orders, products, users here
+}
 </script>
+
+<style>
+.stat-card {
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bg-primary-light { background-color: rgba(255, 182, 193, 0.1); }
+.bg-success-light { background-color: rgba(152, 251, 152, 0.1); }
+.bg-warning-light { background-color: rgba(255, 215, 0, 0.1); }
+.bg-info-light { background-color: rgba(135, 206, 235, 0.1); }
+.chart-container {
+    position: relative;
+    height: 250px;
+}
+.avatar-placeholder {
+    font-weight: bold;
+    font-size: 18px;
+}
+.list-group-item {
+    border-bottom: 1px solid #f0f0f0 !important;
+}
+.list-group-item:last-child {
+    border-bottom: none !important;
+}
+.card {
+    border-radius: 15px;
+}
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+}
+</style>
 
 <?php 
 // Helper functions
@@ -392,39 +504,10 @@ function timeAgo($datetime) {
 }
 ?>
 
-<style>
-.stat-card {
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-}
-.stat-card:hover {
-    transform: translateY(-5px);
-}
-.icon-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.bg-primary-light { background-color: rgba(255, 182, 193, 0.1); }
-.bg-success-light { background-color: rgba(152, 251, 152, 0.1); }
-.bg-warning-light { background-color: rgba(255, 215, 0, 0.1); }
-.bg-info-light { background-color: rgba(135, 206, 235, 0.1); }
-.chart-container {
-    position: relative;
-    height: 300px;
-}
-.avatar-placeholder {
-    font-weight: bold;
-}
-</style>
-
 <?php 
-// Pastikan footer.php ada di folder yang sama
-$footerPath = realpath(__DIR__ . '/footer.php');
-if ($footerPath) {
+// Include footer
+$footerPath = __DIR__ . '/footer.php';
+if (file_exists($footerPath)) {
     include $footerPath;
 } else {
     echo '<!-- Footer not found -->';

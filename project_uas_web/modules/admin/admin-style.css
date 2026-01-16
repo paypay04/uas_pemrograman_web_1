@@ -1,0 +1,443 @@
+/* Admin Users Management - Custom CSS */
+:root {
+    --primary-admin: #895737;
+    --primary-dark: #5E3023;
+    --secondary-admin: #684F36;
+    --accent-admin: #F1EADA;
+    --light-admin: #F3E9DC;
+    --dark-admin: #3D1F12;
+    --admin-danger: #FF6B6B;
+    --admin-success: #98FB98;
+    --admin-warning: #FFD700;
+    --admin-info: #87CEEB;
+    --border-radius-lg: 15px;
+    --border-radius-xl: 20px;
+}
+
+/* Page Header Styling */
+.admin-page-header {
+    background: linear-gradient(135deg, var(--primary-admin) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-radius: var(--border-radius-lg);
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(137, 87, 55, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-page-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    opacity: 0.3;
+}
+
+.admin-page-header h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.admin-page-header .text-muted {
+    color: rgba(255, 255, 255, 0.85) !important;
+    position: relative;
+    z-index: 2;
+}
+
+/* Custom Button Back */
+.btn-admin-back {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.btn-admin-back:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: white;
+    transform: translateX(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Filter Card */
+.admin-filter-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    border: 2px solid var(--accent-admin);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+.admin-filter-card:hover {
+    box-shadow: 0 8px 25px rgba(137, 87, 55, 0.15);
+    border-color: var(--primary-admin);
+}
+
+/* Search Input Custom */
+.admin-search-group .form-control {
+    border: 2px solid var(--accent-admin);
+    border-radius: 25px;
+    padding: 12px 20px 12px 45px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: var(--light-admin);
+}
+
+.admin-search-group .form-control:focus {
+    border-color: var(--primary-admin);
+    box-shadow: 0 0 0 0.25rem rgba(137, 87, 55, 0.15);
+    background: white;
+}
+
+.admin-search-group .btn-primary {
+    border-radius: 25px;
+    padding: 12px 25px;
+}
+
+/* Filter Button Group */
+.admin-filter-buttons .btn-group {
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-filter-buttons .btn {
+    padding: 8px 20px;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.admin-filter-buttons .btn-outline-primary {
+    border-color: var(--primary-admin);
+    color: var(--primary-admin);
+}
+
+.admin-filter-buttons .btn-outline-primary:hover,
+.admin-filter-buttons .btn-outline-primary.active {
+    background: var(--primary-admin);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.admin-filter-buttons .btn-outline-danger {
+    border-color: var(--admin-danger);
+    color: var(--admin-danger);
+}
+
+.admin-filter-buttons .btn-outline-danger:hover,
+.admin-filter-buttons .btn-outline-danger.active {
+    background: linear-gradient(135deg, var(--admin-danger) 0%, #FF5252 100%);
+    color: white;
+    transform: translateY(-2px);
+    border-color: transparent;
+}
+
+.admin-filter-buttons .btn-outline-success {
+    border-color: var(--admin-success);
+    color: #28a745;
+}
+
+.admin-filter-buttons .btn-outline-success:hover,
+.admin-filter-buttons .btn-outline-success.active {
+    background: linear-gradient(135deg, var(--admin-success) 0%, #85E085 100%);
+    color: white;
+    transform: translateY(-2px);
+    border-color: transparent;
+}
+
+/* Users Table Card */
+.admin-users-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    border: 2px solid var(--accent-admin);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.admin-users-card .card-header {
+    background: linear-gradient(135deg, #FFF9F0 0%, white 100%);
+    border-bottom: 2px solid var(--accent-admin);
+    padding: 20px 25px;
+}
+
+.admin-users-card .card-header h6 {
+    color: var(--dark-admin);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.admin-users-card .card-footer {
+    background: var(--light-admin);
+    border-top: 2px solid var(--accent-admin);
+}
+
+/* Table Custom Styling */
+.table-admin {
+    margin-bottom: 0;
+}
+
+.table-admin thead th {
+    background: var(--light-admin);
+    color: var(--dark-admin);
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-admin);
+    padding: 15px 20px;
+}
+
+.table-admin tbody td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table-admin tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table-admin tbody tr:hover {
+    background-color: rgba(137, 87, 55, 0.03);
+    transform: translateX(5px);
+}
+
+/* Avatar Placeholder */
+.avatar-admin {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    background: linear-gradient(135deg, var(--admin-info) 0%, #6CB2EB 100%);
+    color: white;
+    box-shadow: 0 3px 8px rgba(108, 178, 235, 0.3);
+}
+
+/* Badge Custom */
+.badge-admin {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.badge-admin-role {
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.badge-role-admin {
+    background: linear-gradient(135deg, var(--admin-danger) 0%, #FF5252 100%);
+    color: white;
+    box-shadow: 0 3px 8px rgba(220, 53, 69, 0.2);
+}
+
+.badge-role-user {
+    background: linear-gradient(135deg, var(--primary-admin) 0%, var(--secondary-admin) 100%);
+    color: white;
+    box-shadow: 0 3px 8px rgba(137, 87, 55, 0.2);
+}
+
+.badge-status-active {
+    background: linear-gradient(135deg, var(--admin-success) 0%, #85E085 100%);
+    color: white;
+    box-shadow: 0 3px 8px rgba(40, 167, 69, 0.2);
+}
+
+/* Action Buttons */
+.btn-action-group {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-action {
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-action-view {
+    background: var(--light-admin);
+    color: var(--primary-admin);
+    border: 2px solid var(--accent-admin);
+}
+
+.btn-action-view:hover {
+    background: var(--primary-admin);
+    color: white;
+    border-color: var(--primary-admin);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(137, 87, 55, 0.2);
+}
+
+.btn-action-edit {
+    background: var(--light-admin);
+    color: var(--secondary-admin);
+    border: 2px solid var(--accent-admin);
+}
+
+.btn-action-edit:hover:not(:disabled) {
+    background: var(--secondary-admin);
+    color: white;
+    border-color: var(--secondary-admin);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(104, 79, 54, 0.2);
+}
+
+.btn-action-edit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-action-delete {
+    background: var(--light-admin);
+    color: var(--admin-danger);
+    border: 2px solid var(--accent-admin);
+}
+
+.btn-action-delete:hover:not(:disabled) {
+    background: var(--admin-danger);
+    color: white;
+    border-color: var(--admin-danger);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.2);
+}
+
+.btn-action-delete:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* No Users State */
+.no-users-state {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.no-users-state i {
+    font-size: 4rem;
+    color: var(--accent-admin);
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.no-users-state h5 {
+    color: var(--secondary-admin);
+    margin-bottom: 10px;
+}
+
+.no-users-state p {
+    color: #999;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Modal Custom */
+.modal-admin .modal-content {
+    border-radius: var(--border-radius-lg);
+    border: 2px solid var(--accent-admin);
+    overflow: hidden;
+}
+
+.modal-admin .modal-header {
+    background: linear-gradient(135deg, var(--light-admin) 0%, white 100%);
+    border-bottom: 2px solid var(--accent-admin);
+}
+
+.modal-admin .modal-footer {
+    background: var(--light-admin);
+    border-top: 2px solid var(--accent-admin);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-page-header {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .admin-page-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .btn-admin-back {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    .admin-filter-buttons .btn-group {
+        width: 100%;
+    }
+    
+    .admin-filter-buttons .btn {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .table-admin thead th:nth-child(7),
+    .table-admin tbody td:nth-child(7),
+    .table-admin thead th:nth-child(8),
+    .table-admin tbody td:nth-child(8) {
+        display: none;
+    }
+    
+    .btn-action-group {
+        flex-direction: column;
+    }
+    
+    .btn-action {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Loading Animation */
+@keyframes adminPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.loading-admin {
+    animation: adminPulse 1.5s ease-in-out infinite;
+}
+
+/* Custom Scrollbar for Admin */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: var(--light-admin);
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: var(--primary-admin);
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}

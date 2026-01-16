@@ -21,6 +21,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/assets/css/style.css">
     
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/modules/admin/admin-style.css">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo BASE_URL; ?>/assets/images/favicon.png">
     
@@ -46,11 +47,11 @@ if (session_status() === PHP_SESSION_NONE) {
                             <i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo BASE_URL; ?>/modules/product"><i class="fas fa-heart"></i> Products</a>
+                        <a class="nav-link" href="<?php echo BASE_URL; ?>/product"><i class="fas fa-heart"></i> Products</a>
                     </li>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo BASE_URL; ?>/modules/about">
+                        <a class="nav-link" href="<?php echo BASE_URL; ?>/about">
                             <i class="fas fa-heart me-1"></i> About
                         </a>
                     </li>
@@ -68,7 +69,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     </form>
                     
                     <!-- Cart -->
-                    <a href="<?php echo BASE_URL; ?>/modules/cart" class="btn btn-outline-primary me-3 position-relative">
+                    <a href="<?php echo BASE_URL; ?>/cart" class="btn btn-outline-primary me-3 position-relative">
                         <i class="fas fa-shopping-cart"></i>
                         <span id="cart-counter" class="cart-counter position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <?php
@@ -110,7 +111,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                 </a>
                                 <?php if (isAdmin()): ?>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="<?php echo BASE_URL; ?>/admin">
+                                    <a class="dropdown-item" href="<?php echo BASE_URL; ?>/modules/admin">
                                         <i class="fas fa-cog me-2"></i> Admin Panel
                                     </a>
                                 <?php endif; ?>

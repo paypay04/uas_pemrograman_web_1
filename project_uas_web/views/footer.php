@@ -215,7 +215,7 @@
         <!-- Custom CSS for Footer -->
         <style>
         .footer {
-            background: linear-gradient(135deg, #FFF0F5 0%, #FFFFFF 100%);
+            background: linear-gradient(to bottom, #F3E9DC 0%, #F3E9D7 100%);
         }
         
         .hover-pink {

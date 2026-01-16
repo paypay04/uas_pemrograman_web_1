@@ -53,8 +53,12 @@ switch ($request) {
         require_once __DIR__ . '/modules/about/index.php';
         break;
 
-    case '/products':
+    case '/product':
         require_once __DIR__ . '/modules/product/index.php';
+        break;
+
+    case '/product/tambah':
+        require_once __DIR__ . '/modules/product/tambah.php';
         break;
 
     // di index.php utama (root folder)
@@ -62,6 +66,18 @@ switch ($request) {
         require_once __DIR__ . '/modules/product/product_detail.php';
         break;
         
+    case '/cart':
+        require_once __DIR__ . '/modules/cart/index.php';
+        break;
+
+    case '/product/edit':
+        require_once __DIR__ . '/modules/product/edit.php';
+        break;
+        
+    case '/product/tambah':
+        require_once __DIR__ . '/modules/product/tambah.php';
+        break;
+    
     default:
         // Coba include file jika ada
         $filePath = __DIR__ . $request . '.php';

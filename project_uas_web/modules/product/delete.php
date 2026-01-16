@@ -1,39 +1,50 @@
 <?php
+// modules/product/delete.php
 require_once __DIR__ . '/../../config.php';
 
-// Cek admin access
+// Cek login dan role admin
 if (!isLoggedIn() || !isAdmin()) {
+    $_SESSION['error'] = 'Access denied.';
     redirect('/login');
+    exit();
+}
+
+// Cek parameter ID
+if (!isset($_POST['id']) || empty($_POST['id'])) {
+    $_SESSION['error'] = 'Product ID is required';
+    redirect('/product');
+    exit();
 }
 
 require_once __DIR__ . '/../../class/Database.php';
 require_once __DIR__ . '/../../class/Product.php';
 
+$productId = (int)$_POST['id'];
 $product = new Product();
+$productData = $product->getById($productId);
 
-// Get product ID
-$id = $_GET['id'] ?? 0;
-
-if ($id) {
-    // Get product data first (for image deletion)
-    $productData = $product->getById($id);
-    
-    // Delete product
-    if ($product->delete($id)) {
-        // Delete image file if exists
-        if ($productData && $productData['image_url']) {
-            $imagePath = __DIR__ . '/../../assets/gambar/products/' . $productData['image_url'];
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
+if ($productData) {
+    // Delete image file if not default
+    if ($productData['image_url'] != 'default.jpg' && $productData['image_url'] != '') {
+        $imagePath = __DIR__ . '/../../assets/gambar/' . $productData['image_url'];
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
         }
-        
-        $_SESSION['success'] = 'Product deleted successfully!';
+    }
+    
+    // Delete from database
+    $sql = "DELETE FROM products WHERE id = :id";
+    $stmt = $product->db->prepare($sql);
+    $stmt->bindParam(':id', $productId);
+    
+    if ($stmt->execute()) {
+        $_SESSION['success'] = 'Product deleted successfully';
     } else {
         $_SESSION['error'] = 'Failed to delete product';
     }
+} else {
+    $_SESSION['error'] = 'Product not found';
 }
 
-// Redirect back to products page
-redirect('?page=products');
+redirect('/product');
 ?>
